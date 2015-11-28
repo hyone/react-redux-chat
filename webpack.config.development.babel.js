@@ -39,7 +39,7 @@ export default {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.ProvidePlugin({
-      $: 'jqeury',
+      $: 'jquery',
       jQuery: 'jquery'
     })
   ],

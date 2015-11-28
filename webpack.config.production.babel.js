@@ -4,7 +4,7 @@ import webpack from 'webpack';
 export default {
   cache: true,
   debug: true,
-  devtool: 'eval-source-map',
+  devtool: 'source-map',
 
   entry: {
     main: [
@@ -13,7 +13,6 @@ export default {
     vendor: [
       'jquery',
       'bootstrap-sass',
-      'classnames',
       'firebase',
       'history',
       'react',
@@ -46,6 +45,10 @@ export default {
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')
+    }),
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery'
     }),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.AggressiveMergingPlugin(),

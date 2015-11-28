@@ -58,7 +58,10 @@ const config = {
     includes: [
       'dist/vendor.js'
     ],
-    options: { relative: true }
+    options: {
+      addRootSlash: true,
+      relative: true
+    }
   },
 
   sass: {

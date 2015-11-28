@@ -12,6 +12,7 @@
   },
   "scripts": {
     "start": "./node_modules/.bin/gulp run",
+    "dist": "BABEL_ENV=production ./node_modules/.bin/gulp dist",
     "test": "BABEL_ENV=test ./node_modules/.bin/mocha --opts mocha.opts"
   },
   "dependencies": {
@@ -43,6 +44,7 @@
     "eslint-plugin-react": "~3.9.0",
     "expect": "~1.13.0",
     "expect-jsx": "~2.1.2",
+    "firebase-tools": "2.1.0",
     "gulp": "gulpjs/gulp#4.0",
     "gulp-eslint": "~1.1.0",
     "gulp-header": "~1.7.1",
