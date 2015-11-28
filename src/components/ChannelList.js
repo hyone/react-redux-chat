@@ -12,7 +12,7 @@ export default class ChannelList extends Component {
 
     return (
       <div className="channels-list">
-        <h3 className="bs-example">CHANNELS</h3>
+        <h3>CHANNELS</h3>
         <div className="list-group">
           { map(channels, (channel, channelId) =>
               <Link key={ channelId }

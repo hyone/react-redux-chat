@@ -4,7 +4,7 @@ import { render } from 'react-dom';
 
 import { FIREBASE_URL } from 'config';
 import configureStore from 'store/configureStore';
-import { Root } from 'containers/root';
+import Root from 'containers/root';
 
 const store = configureStore({
   firebase: new Firebase(FIREBASE_URL)
