@@ -1,0 +1,15 @@
+.login-panel {
+  > h2 {
+    margin: 20px 0;
+  }
+}
+
+.login-button {
+  @extend .btn;
+  @extend .btn-default;
+  @extend .btn-lg;
+  @extend .btn-block;
+  text-align: center;
+  margin: 10px 0;
+}
+

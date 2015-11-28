@@ -1,0 +1,111 @@
+@import "bootstrap";
+
+$sidebar-width: 150px;
+$footer-width: 100px;
+
+.messages-container {
+  .sidebar {
+    position: fixed;
+    height: 100%;
+    width: $sidebar-width;
+    left: 0;
+    border-right: 1px solid $gray-lighter;
+    /* background-color: $gray-lighter; */
+  }
+
+  .main {
+    position: fixed;
+    height: 100%;
+    left: $sidebar-width;
+
+    .main-footer {
+      height: $footer-width;
+      padding: 10px;
+    }
+  }
+}
+
+.messages-list {
+  position: relative;
+  height: calc(100% - #{$footer-width});
+  overflow-y: scroll;
+  padding: 10px;
+  padding-bottom: 0;
+
+  .loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 20px;
+    height: 20px;
+  }
+
+  > ul {
+    margin-bottom: 0;
+    padding-left: 0;
+
+    li {
+      list-style-type: none;
+
+      .message-item {
+        padding: 8px 0;
+
+        .avatar {
+          img {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border-radius: 4px;
+          }
+        }
+
+        .name, .text {
+          position: relative;
+          padding-left: 50px;
+        }
+
+        .name {
+          font-weight: bold;
+        }
+
+        .info {
+          &:before {
+            content: "\0020\00b7\0020";
+          }
+          color: $gray-light;
+          font-size: 80%;
+        }
+      }
+    }
+  }
+}
+
+.channels-list {
+  h3 {
+    margin: 0;
+    margin-top: 5px;
+    padding: 10px;
+    color: lighten($gray-light, 15%);
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .list-group-item {
+    border: none;
+    background-color: inherit;
+  }
+  .list-group-item:first-child {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+  }
+  .list-group-item:last-child {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .list-group-item.active {
+    background-color: lighten($list-group-active-bg, 15%);
+  }
+}

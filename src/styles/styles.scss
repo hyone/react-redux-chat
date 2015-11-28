@@ -1,0 +1,27 @@
+@import "bootstrap";
+
+@import "login";
+@import "navigation";
+@import "messages";
+
+body {
+}
+
+#app-container {
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 0;
+}
+
+.navigation {
+  background-color: #fff;
+}
+
+.header {
+  height: 51px;
+}
+
+.fa, .glyphicon {
+  margin-right: 5px;
+}
