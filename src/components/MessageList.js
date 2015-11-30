@@ -4,6 +4,8 @@ import last from 'lodash/array/last';
 
 import MessageItem from './MessageItem';
 
+import '../styles/MessageList.scss';
+
 export default class MessageList extends Component {
   static propTypes = {
     loading: PropTypes.bool.isRequired,

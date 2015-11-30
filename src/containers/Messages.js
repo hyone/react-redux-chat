@@ -14,6 +14,8 @@ import ChannelList from '../components/ChannelList';
 import MessageList from '../components/MessageList';
 import MessageForm from '../components/MessageForm';
 
+import '../styles/Messages.scss';
+
 @connect(mapStateToProps, {
   ...channelsActions,
   ...messagesActions,

@@ -1,4 +1,3 @@
-import autoprefixer         from 'autoprefixer';
 import browserSync          from 'browser-sync';
 import del                  from 'del';
 import eslint               from 'gulp-eslint';
@@ -7,31 +6,19 @@ import gutil                from 'gulp-util';
 import header               from 'gulp-header';
 import historyApi           from 'connect-history-api-fallback';
 import inject               from 'gulp-inject';
-import postcss              from 'gulp-postcss';
-import sass                 from 'gulp-sass';
 import webpack              from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 
-
 const paths = {
   src: {
     html: 'src/**/*.html',
-    js: 'src/**/*.js',
-    sass: 'src/styles/**/*.scss',
-    fonts: {
-      files: 'node_modules/bootstrap-sass/assets/fonts/**/*',
-      base:  'node_modules/bootstrap-sass/assets'
-    }
+    js: 'src/**/*.js'
   },
   target: 'dist'
 };
 
 const config = {
-  autoprefixer: {
-    browsers: ['last 3 versions']
-  },
-
   browserSync: {
     files: [ `${paths.target}/**/!(*.js)` ],
     notify: false,
@@ -49,7 +36,7 @@ const config = {
   },
 
   header: {
-    src: paths.target + '/*.{css,js}',
+    src: paths.target + '/*.{js}',
     template: '/* <%= name %>@<%= version %> - <%= date %> - <%= url %> */\n'
   },
 
@@ -64,17 +51,6 @@ const config = {
     }
   },
 
-  sass: {
-    errLogToConsole: true,
-    outputStyle: 'nested',
-    precision: 10,
-    sourceComments: false,
-    includePaths: [
-      './node_modules/bootstrap-sass/assets/stylesheets/',
-      './node_modules/bootcards/src/css/'
-    ]
-  },
-
   webpack: {
     development: './webpack.config.development.babel',
     production: './webpack.config.production.babel'
@@ -84,12 +60,6 @@ const config = {
 gulp.task('clean', () =>
   del(paths.target)
 );
-
-gulp.task('copy:fonts', () => {
-  const { files, base } = paths.src.fonts;
-  return gulp.src(files, { base: base })
-    .pipe(gulp.dest(paths.target));
-});
 
 gulp.task('copy:html', () =>
   gulp.src(paths.src.html)
@@ -118,8 +88,11 @@ gulp.task('inject', () => {
     .pipe(gulp.dest(paths.target));
 });
 
-gulp.task('js', (done) => {
-  const webpackConfig = require(config.webpack.production);
+gulp.task('webpack', (done) => {
+  const configFile = process.env.NODE_ENV === 'production'
+                       ? config.webpack.production
+                       : config.webpack.development;
+  const webpackConfig = require(configFile);
   webpack(webpackConfig).run((error, stats) => {
     if (error) throw new gutil.PluginError('webpack', error);
     gutil.log(stats.toString(webpackConfig.stats));
@@ -132,15 +105,6 @@ gulp.task('lint', () => {
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError());
-});
-
-gulp.task('css', () => {
-  return gulp.src(paths.src.sass)
-    .pipe(sass(config.sass))
-    .pipe(postcss([
-      autoprefixer(config.autoprefixer)
-    ]))
-    .pipe(gulp.dest(paths.target));
 });
 
 gulp.task('serve', (done) => {
@@ -164,26 +128,28 @@ gulp.task('serve:development', (done) => {
 });
 
 
-gulp.task('build', gulp.series(
+gulp.task('prepare', gulp.series(
   'clean',
   'copy:html',
-  'copy:fonts',
-  'css'
 ));
 
+gulp.task('build', gulp.series(
+  'prepare',
+  'webpack'
+));
+
+
 gulp.task('watch:development', gulp.series(
-  'build',
+  'prepare',
   'serve:development',
   () => {
     gulp.watch(paths.src.html, gulp.task('copy:html'));
-    gulp.watch(paths.src.sass, gulp.task('css'));
   }
 ));
 
 gulp.task('dist', gulp.series(
   'lint',
   'build',
-  'js',
   'inject',
   'headers'
 ));

@@ -1,5 +1,6 @@
 import path from 'path';
 import webpack from 'webpack';
+import autoprefixer from 'autoprefixer';
 
 export default {
   cache: true,
@@ -8,8 +9,6 @@ export default {
 
   entry: {
     main: [
-      'jquery',
-      'bootstrap-sass',
       'webpack-hot-middleware/client',
       './src/index.js'
     ]
@@ -27,6 +26,36 @@ export default {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel'
+      },
+      {
+        test: /\.scss$/,
+        include: path.resolve('./src/styles'),
+        loaders: [
+          'style',
+          'css',
+          'postcss',
+          'sass'
+        ]
+      },
+      {
+        test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
+        loader: "url?limit=10000&minetype=application/font-woff"
+      },
+      {
+        test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
+        loader: "url?limit=10000&minetype=application/font-woff"
+      },
+      {
+        test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+        loader: "url?limit=10000&minetype=application/octet-stream"
+      },
+      {
+        test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+        loader: "file"
+      },
+      {
+        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+        loader: "url?limit=10000&minetype=image/svg+xml"
       }
     ]
   },
@@ -44,9 +73,17 @@ export default {
     })
   ],
 
+  postcss() {
+    return [ autoprefixer({ browsers: ['last 3 versions'] }) ];
+  },
+
+  sassLoader: {
+    includePaths: [ path.resolve('node_modules') ]
+  },
+
   resolve: {
-    extensions: ['', '.js'],
-    moduleDirectories: [
+    extensions: ['', '.js', '.scss'],
+    modulesDirectories: [
       'node_modules'
     ],
     root: path.resolve('./src')

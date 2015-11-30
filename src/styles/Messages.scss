@@ -1,0 +1,24 @@
+@import "bootstrap";
+@import "variables";
+
+.messages-container {
+  .sidebar {
+    position: fixed;
+    height: 100%;
+    width: $sidebar-width;
+    left: 0;
+    border-right: 1px solid $gray-lighter;
+    /* background-color: $gray-lighter; */
+  }
+
+  .main {
+    position: fixed;
+    height: 100%;
+    left: $sidebar-width;
+
+    .main-footer {
+      height: $footer-width;
+      padding: 10px;
+    }
+  }
+}

@@ -6,6 +6,8 @@ import { AUTH_ALLOW } from '../constants/authStatus';
 import * as authActions from '../actions/auth';
 import * as usersActions from '../actions/users';
 
+import '../styles/login.scss';
+
 @connect(state => ({
   auth: state.auth,
   router: state.router

@@ -1,0 +1,31 @@
+@import "bootstrap";
+
+.message-item {
+  padding: 8px 0;
+
+  .avatar {
+    img {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      border-radius: 4px;
+    }
+  }
+
+  .name, .text {
+    position: relative;
+    padding-left: 50px;
+  }
+
+  .name {
+    font-weight: bold;
+  }
+
+  .info {
+    &:before {
+      content: "\0020\00b7\0020";
+    }
+    color: $gray-light;
+    font-size: 80%;
+  }
+}

@@ -1,0 +1,28 @@
+@import "bootstrap";
+
+.channels-list {
+  h3 {
+    margin: 0;
+    margin-top: 5px;
+    padding: 10px;
+    color: lighten($gray-light, 15%);
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .list-group-item {
+    border: none;
+    background-color: inherit;
+  }
+  .list-group-item:first-child {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+  }
+  .list-group-item:last-child {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .list-group-item.active {
+    background-color: lighten($list-group-active-bg, 15%);
+  }
+}

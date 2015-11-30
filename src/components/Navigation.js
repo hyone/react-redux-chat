@@ -1,7 +1,11 @@
+import 'jquery';
+import 'bootstrap-sass';
 import React, { Component, PropTypes } from 'react';
 
 import { APPLICATION_NAME } from '../config';
 import { AUTH_ALLOW } from '../constants/authStatus';
+
+import '../styles/Navigation.scss';
 
 export default class Navigation extends Component {
   static propTypes = {
