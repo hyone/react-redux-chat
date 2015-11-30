@@ -77,7 +77,7 @@ function updatedAt(state = messageInitialState.updatedAt, action) {
 function entities(state = messageInitialState.entities, action) {
   switch (action.type) {
     case LOAD_MESSAGES_SUCCESS:
-      return action.payload;
+      return { ...action.payload };
     case RECEIVE_MESSAGE_SUCCESS:
       return { ...state, ...action.payload };
     default:
