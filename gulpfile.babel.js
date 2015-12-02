@@ -1,11 +1,14 @@
 import browserSync          from 'browser-sync';
 import del                  from 'del';
 import eslint               from 'gulp-eslint';
+import glob                 from 'glob';
 import gulp                 from 'gulp';
 import gutil                from 'gulp-util';
 import header               from 'gulp-header';
 import historyApi           from 'connect-history-api-fallback';
 import inject               from 'gulp-inject';
+import mocha                from 'gulp-spawn-mocha';
+import path                 from 'path';
 import webpack              from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
@@ -13,21 +16,25 @@ import webpackHotMiddleware from 'webpack-hot-middleware';
 const paths = {
   src: {
     html: 'src/**/*.html',
-    js: 'src/**/*.js'
+    js: 'src/**/*.js',
+    test: 'test/**/*.spec.js'
   },
-  target: 'dist'
+  dest: {
+    target: 'dist',
+    testTarget: './tmp/testBundle.js'
+  }
 };
 
 const config = {
   browserSync: {
-    files: [ `${paths.target}/**/!(*.js)` ],
+    files: [ `${paths.dest.target}/**/!(*.js)` ],
     notify: false,
     open: false,
     port: 7000,
     reloadDelay: 1200,
     reloadOnRestart: true,
     server: {
-      baseDir: paths.target
+      baseDir: paths.dest.target
     }
   },
 
@@ -36,7 +43,7 @@ const config = {
   },
 
   header: {
-    src: paths.target + '/*.{js}',
+    src: paths.dest.target + '/*.{js}',
     template: '/* <%= name %>@<%= version %> - <%= date %> - <%= url %> */\n'
   },
 
@@ -51,19 +58,25 @@ const config = {
     }
   },
 
+  mocha: {
+    require: [ path.resolve('./test/utils/dom.js') ],
+    reporter: 'spec'
+  },
+
   webpack: {
     development: './webpack.config.development.babel',
+    test: './webpack.config.test.babel',
     production: './webpack.config.production.babel'
   }
 };
 
 gulp.task('clean', () =>
-  del(paths.target)
+  del([paths.dest.target, paths.dest.testTarget])
 );
 
 gulp.task('copy:html', () =>
   gulp.src(paths.src.html)
-    .pipe(gulp.dest(paths.target))
+    .pipe(gulp.dest(paths.dest.target))
 );
 
 gulp.task('headers', () => {
@@ -76,7 +89,7 @@ gulp.task('headers', () => {
   };
   return gulp.src(config.header.src)
     .pipe(header(config.header.template, params))
-    .pipe(gulp.dest(paths.target));
+    .pipe(gulp.dest(paths.dest.target));
 });
 
 gulp.task('inject', () => {
@@ -85,7 +98,7 @@ gulp.task('inject', () => {
       gulp.src(config.inject.includes, { read: false }),
       config.inject.options
     ))
-    .pipe(gulp.dest(paths.target));
+    .pipe(gulp.dest(paths.dest.target));
 });
 
 gulp.task('webpack', (done) => {
@@ -93,6 +106,43 @@ gulp.task('webpack', (done) => {
                        ? config.webpack.production
                        : config.webpack.development;
   const webpackConfig = require(configFile);
+  webpack(webpackConfig).run((error, stats) => {
+    if (error) throw new gutil.PluginError('webpack', error);
+    gutil.log(stats.toString(webpackConfig.stats));
+    done();
+  });
+});
+
+gulp.task('webpack:development', gulp.series(
+  (done) => {
+    process.env.BABEL_ENV = 'development';
+    process.env.NODE_ENV  = 'development';
+    done()
+  },
+  'webpack'
+));
+
+gulp.task('webpack:production', gulp.series(
+  (done) => {
+    process.env.BABEL_ENV = 'production';
+    process.env.NODE_ENV  = 'production';
+    done()
+  },
+  'webpack'
+));
+
+gulp.task('webpack:test', (done) => {
+  process.env.BABEL_ENV = 'test';
+
+  const configFile = config.webpack.test;
+  const webpackConfig = {
+    ...require(configFile),
+    entry: glob.sync(paths.src.test).map((p) => `./${p}`),
+    output: {
+      filename: path.basename(paths.dest.testTarget),
+      path: path.dirname(paths.dest.testTarget)
+    }
+  };
   webpack(webpackConfig).run((error, stats) => {
     if (error) throw new gutil.PluginError('webpack', error);
     gutil.log(stats.toString(webpackConfig.stats));
@@ -133,11 +183,21 @@ gulp.task('prepare', gulp.series(
   'copy:html',
 ));
 
-gulp.task('build', gulp.series(
-  'prepare',
-  'webpack'
-));
+gulp.task('mocha', (done) => {
+  gulp.src(paths.dest.testTarget, { read: false })
+    .pipe(mocha(config.mocha))
+    .on('error', (error) => {
+      gutil.log(error);
+    })
+    .once('end', () => {
+      done();
+    })
+});
 
+gulp.task('test', gulp.series(
+  'webpack:test',
+  'mocha'
+));
 
 gulp.task('watch:development', gulp.series(
   'prepare',
@@ -147,9 +207,14 @@ gulp.task('watch:development', gulp.series(
   }
 ));
 
+gulp.task('watch:test', () => {
+  gulp.watch([ paths.src.js, paths.src.test ], gulp.series('test'));
+});
+
 gulp.task('dist', gulp.series(
   'lint',
-  'build',
+  'prepare',
+  'webpack:production',
   'inject',
   'headers'
 ));

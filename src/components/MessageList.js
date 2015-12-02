@@ -3,6 +3,7 @@ import { findDOMNode } from 'react-dom';
 import last from 'lodash/array/last';
 
 import MessageItem from './MessageItem';
+import MesssagesLoading from './MessagesLoading';
 
 import '../styles/MessageList.scss';
 
@@ -55,12 +56,7 @@ export default class MessageList extends Component {
 
     return (
       <div className="messages-list">
-        {
-          loading &&
-            <div className="loading">
-              <b className="fa fa-lg fa-spin fa-refresh" />
-            </div>
-        }
+        { loading && <MesssagesLoading /> }
         <ul ref="list">
           { messages.map((message) =>
               <li key={ message.id }>

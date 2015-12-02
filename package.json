@@ -12,8 +12,10 @@
   },
   "scripts": {
     "start": "./node_modules/.bin/gulp run",
-    "dist": "BABEL_ENV=production ./node_modules/.bin/gulp dist",
-    "test": "BABEL_ENV=test ./node_modules/.bin/mocha --opts mocha.opts"
+    "dist": "./node_modules/.bin/gulp dist",
+    "test": "./node_modules/.bin/gulp test",
+    "watch:test": "./node_modules/.bin/gulp watch:test",
+    "deploy": "./node_modules/.bin/firebase deploy"
   },
   "dependencies": {
     "bootstrap-sass": "~3.3.5",
@@ -34,6 +36,7 @@
   },
   "devDependencies": {
     "autoprefixer": "~6.1.0",
+    "babel": "~5.8.34",
     "babel-core": "~5.8.34",
     "babel-eslint": "~4.1.5",
     "babel-loader": "~5.3.3",
@@ -47,16 +50,20 @@
     "expect": "~1.13.0",
     "expect-jsx": "~2.1.2",
     "file-loader": "0.8.5",
-    "firebase-tools": "2.1.0",
+    "firebase-tools": "~2.1.0",
+    "glob": "~6.0.1",
     "gulp": "gulpjs/gulp#4.0",
     "gulp-eslint": "~1.1.0",
     "gulp-header": "~1.7.1",
     "gulp-inject": "~3.0.0",
     "gulp-postcss": "~6.0.1",
     "gulp-sass": "~2.1.0",
+    "gulp-spawn-mocha": "2.2.1",
     "gulp-util": "~3.0.7",
+    "jsdom": "~7.1.0",
     "mocha": "~2.3.4",
     "node-sass": "~3.4.2",
+    "null-loader": "~0.1.1",
     "postcss-loader": "0.8.0",
     "react-addons-test-utils": "~0.14.3",
     "react-transform-catch-errors": "~1.0.0",
