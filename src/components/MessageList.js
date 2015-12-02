@@ -9,6 +9,7 @@ import '../styles/MessageList.scss';
 
 export default class MessageList extends Component {
   static propTypes = {
+    auth: PropTypes.object.isRequired,
     loading: PropTypes.bool.isRequired,
     messages: PropTypes.array.isRequired,
     users: PropTypes.object.isRequired
