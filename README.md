@@ -21,7 +21,7 @@ $ npm test
 
 run watching test mode:
 ```sh
-$ npm watch:test
+$ npm test.watch
 ```
 
 run specific tests:

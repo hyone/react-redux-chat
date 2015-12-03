@@ -14,7 +14,7 @@
     "start": "./node_modules/.bin/gulp run",
     "dist": "./node_modules/.bin/gulp dist",
     "test": "./node_modules/.bin/gulp test",
-    "watch:test": "./node_modules/.bin/gulp watch:test",
+    "test.watch": "./node_modules/.bin/gulp watch:test",
     "deploy": "./node_modules/.bin/firebase deploy"
   },
   "dependencies": {
