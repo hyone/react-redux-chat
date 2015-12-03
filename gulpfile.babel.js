@@ -183,15 +183,16 @@ gulp.task('prepare', gulp.series(
   'copy:html',
 ));
 
+let watchingTestMode = false;
 gulp.task('mocha', (done) => {
   gulp.src(paths.dest.testTarget, { read: false })
     .pipe(mocha(config.mocha))
     .on('error', (error) => {
       gutil.log(error);
+      if (!watchingTestMode)
+        process.exit(1);
     })
-    .once('end', () => {
-      done();
-    })
+    .once('end', done);
 });
 
 gulp.task('test', gulp.series(
@@ -208,6 +209,8 @@ gulp.task('watch:development', gulp.series(
 ));
 
 gulp.task('watch:test', () => {
+  // prevent watching test mode from exiting
+  watchingTestMode = true;
   gulp.watch([ paths.src.js, paths.src.test ], gulp.series('test'));
 });
 
