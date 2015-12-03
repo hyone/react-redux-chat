@@ -66,7 +66,7 @@ describe('channels reducer', () => {
     it('loading should be false', () => {
       expect(
         get(channelsReducer(undefined, action), 'loading')
-      ).toEqual(false);
+      ).toEqual(true);
     });
   });
 });
