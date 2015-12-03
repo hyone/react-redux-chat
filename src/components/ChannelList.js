@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import map from 'lodash/collection/map';
 
-import '../styles/ChannelList.scss';
+import 'styles/ChannelList.scss';
 
 export default class ChannelList extends Component {
   static propTypes = {

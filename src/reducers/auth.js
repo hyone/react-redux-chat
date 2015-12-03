@@ -8,13 +8,13 @@ import {
   SIGNIN_SUCCESS,
   SIGNIN_ERROR,
   SIGNOUT_SUCCESS
-} from '../constants/actionTypes/auth';
+} from 'constants/actionTypes/auth';
 import {
   UNAUTH,
   AUTH_ALLOW,
   AUTH_DENY,
   AUTH_SIGNOUT
-} from '../constants/authStatus';
+} from 'constants/authStatus';
 
 export const initialState = {
   authenticating: false,

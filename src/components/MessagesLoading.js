@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import '../styles/MessagesLoading.scss';
+import 'styles/MessagesLoading.scss';
 
 export default class MessagesLoading extends Component {
   render() {

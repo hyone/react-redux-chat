@@ -11,7 +11,7 @@ import {
   POST_MESSAGE_ERROR,
   RECEIVE_MESSAGE_SUCCESS,
   RECEIVE_MESSAGE_ERROR
-} from '../constants/actionTypes/messages';
+} from 'constants/actionTypes/messages';
 
 export function postMessage(channel, text) {
   return (dispatch, getState) => {

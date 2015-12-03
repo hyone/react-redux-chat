@@ -2,10 +2,10 @@ import React, { Component, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
 import last from 'lodash/array/last';
 
-import MessageItem from './MessageItem';
-import MesssagesLoading from './MessagesLoading';
+import MessageItem from 'components/MessageItem';
+import MesssagesLoading from 'components/MessagesLoading';
 
-import '../styles/MessageList.scss';
+import 'styles/MessageList';
 
 export default class MessageList extends Component {
   static propTypes = {

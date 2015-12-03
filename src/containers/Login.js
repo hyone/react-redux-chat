@@ -1,12 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { DEFAULT_POST_SIGNIN_PATH } from '../config';
-import { AUTH_ALLOW } from '../constants/authStatus';
-import * as authActions from '../actions/auth';
-import * as usersActions from '../actions/users';
+import { DEFAULT_POST_SIGNIN_PATH } from 'config';
+import { AUTH_ALLOW } from 'constants/authStatus';
+import * as authActions from 'actions/auth';
+import * as usersActions from 'actions/users';
 
-import '../styles/login.scss';
+import 'styles/login.scss';
 
 @connect(state => ({
   auth: state.auth,

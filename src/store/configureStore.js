@@ -8,7 +8,7 @@ const { BLUR, CHANGE, FOCUS, TOUCH } = actionTypes;
 import contains from 'lodash/collection/contains';
 
 import rootReducer from 'reducers';
-import routes from '../routes';
+import routes from 'routes';
 
 const loggerMiddleware = createLogger({
   predicate: (getState, action) => {

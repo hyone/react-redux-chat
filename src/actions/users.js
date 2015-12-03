@@ -9,7 +9,7 @@ import {
   REGISTER_USER,
   REGISTER_USER_SUCCESS,
   REGISTER_USER_ERROR
-} from '../constants/actionTypes/users';
+} from 'constants/actionTypes/users';
 
 export function loadUser(userId) {
   return (dispatch, getState) => {

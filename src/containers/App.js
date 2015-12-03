@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import * as authActions from '../actions/auth';
-import Navigation from '../components/Navigation';
+import * as authActions from 'actions/auth';
+import Navigation from 'components/Navigation';
 
-import '../styles/App.scss';
+import 'styles/App.scss';
 
 @connect(state => ({
   auth: state.auth

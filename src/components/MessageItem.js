@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import moment from 'moment';
 
-import '../styles/MessageItem.scss';
+import 'styles/MessageItem.scss';
 
 export default class MessageItem extends Component {
   static propTypes = {

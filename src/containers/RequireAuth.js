@@ -4,14 +4,14 @@ import { connect } from 'react-redux';
 import {
   POST_SIGNOUT_PATH,
   SIGNIN_PATH
-} from '../config';
+} from 'config';
 import {
   AUTH_ALLOW,
   AUTH_DENY,
   AUTH_SIGNOUT
-} from '../constants/authStatus';
-import * as authActions from '../actions/auth';
-import * as usersActions from '../actions/users';
+} from 'constants/authStatus';
+import * as authActions from 'actions/auth';
+import * as usersActions from 'actions/users';
 
 @connect(state => ({
   auth: state.auth,

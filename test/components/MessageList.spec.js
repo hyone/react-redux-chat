@@ -5,8 +5,8 @@ import {
   renderIntoDocument
 } from 'react-addons-test-utils';
 
-import MessageList from '../../src/components/MessageList';
-import MessagesLoading from '../../src/components/MessagesLoading';
+import MessageList from 'components/MessageList';
+import MessagesLoading from 'components/MessagesLoading';
 
 describe('MessageList Component', () => {
   let props;

@@ -8,7 +8,7 @@ import {
   SIGNIN_SUCCESS,
   SIGNIN_ERROR,
   SIGNOUT_SUCCESS
-} from '../constants/actionTypes/auth';
+} from 'constants/actionTypes/auth';
 
 function authenticate(provider) {
   return (dispatch, getState) => {

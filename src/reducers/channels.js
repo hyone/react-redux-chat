@@ -7,7 +7,7 @@ import {
   ADD_CHANNEL,
   ADD_CHANNEL_SUCCESS,
   ADD_CHANNEL_ERROR
-} from '../constants/actionTypes/channels';
+} from 'constants/actionTypes/channels';
 
 export const initialState = {
   loading: false,

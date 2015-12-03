@@ -36,7 +36,7 @@ export default {
   },
 
   resolve: {
-    extensions: ['', '.js'],
+    extensions: ['', '.js', '.scss'],
     modulesDirectories: [
       'src',
       'node_modules'

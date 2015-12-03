@@ -6,7 +6,7 @@ import {
   LOAD_MESSAGES_ERROR,
   RECEIVE_MESSAGE_SUCCESS,
   RECEIVE_MESSAGE_ERROR
-} from '../constants/actionTypes/messages';
+} from 'constants/actionTypes/messages';
 
 export const messageInitialState = {
   loading: false,

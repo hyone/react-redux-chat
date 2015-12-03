@@ -4,7 +4,7 @@ import {
   LOAD_USER,
   LOAD_USER_SUCCESS,
   LOAD_USER_ERROR
-} from '../constants/actionTypes/users';
+} from 'constants/actionTypes/users';
 
 export const initialState = {
   loading: false,
