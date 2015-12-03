@@ -2,6 +2,8 @@
 
 Simple Chat Application built with React, Redux and Firebase
 
+[![Circle CI](https://circleci.com/gh/hyone/react-redux-chat.svg?style=shield)](https://circleci.com/gh/hyone/react-redux-chat)
+
 ## Demo
 
 https://react-redux-chat.firebaseapp.com/
