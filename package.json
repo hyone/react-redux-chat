@@ -56,8 +56,6 @@
     "gulp-eslint": "~1.1.0",
     "gulp-header": "~1.7.1",
     "gulp-inject": "~3.0.0",
-    "gulp-postcss": "~6.0.1",
-    "gulp-sass": "~2.1.0",
     "gulp-spawn-mocha": "2.2.1",
     "gulp-util": "~3.0.7",
     "jsdom": "~7.1.0",
