@@ -1,5 +1,6 @@
 import path from 'path';
 import webpack from 'webpack';
+import autoprefixer from 'autoprefixer';
 
 export default {
   cache: true,
@@ -93,6 +94,10 @@ export default {
       }
     })
   ],
+
+  postcss() {
+    return [ autoprefixer({ browsers: ['last 3 versions'] }) ];
+  },
 
   sassLoader: {
     includePaths: [ path.resolve('node_modules') ]
