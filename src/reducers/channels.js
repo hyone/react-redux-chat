@@ -21,16 +21,16 @@ export default combineReducers({
   updatedAt
 });
 
-function entities(state = initialState.entities, action) {
+export function entities(state = initialState.entities, action) {
   switch (action.type) {
     case LOAD_CHANNELS_SUCCESS:
-      return action.payload || state;
+      return { ...action.payload };
     default:
       return state;
   }
 }
 
-function loading(state = initialState.loading, action) {
+export function loading(state = initialState.loading, action) {
   switch (action.type) {
     case LOAD_CHANNELS:
       return true;
@@ -42,7 +42,7 @@ function loading(state = initialState.loading, action) {
   }
 }
 
-function updatedAt(state = initialState.updatedAt, action) {
+export function updatedAt(state = initialState.updatedAt, action) {
   switch (action.type) {
     case LOAD_CHANNELS_SUCCESS:
       return action.meta.timestamp;
