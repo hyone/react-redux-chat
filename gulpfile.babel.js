@@ -6,7 +6,6 @@ import gulp                 from 'gulp';
 import gutil                from 'gulp-util';
 import header               from 'gulp-header';
 import historyApi           from 'connect-history-api-fallback';
-import inject               from 'gulp-inject';
 import mocha                from 'gulp-spawn-mocha';
 import path                 from 'path';
 import webpack              from 'webpack';
@@ -47,17 +46,6 @@ const config = {
     template: '/* <%= name %>@<%= version %> - <%= date %> - <%= url %> */\n'
   },
 
-  inject: {
-    src: 'dist/index.html',
-    includes: [
-      'dist/vendor.js'
-    ],
-    options: {
-      addRootSlash: true,
-      relative: true
-    }
-  },
-
   mocha: {
     require: [ path.resolve('./test/utils/dom.js') ],
     reporter: 'spec'
@@ -89,15 +77,6 @@ gulp.task('headers', () => {
   };
   return gulp.src(config.header.src)
     .pipe(header(config.header.template, params))
-    .pipe(gulp.dest(paths.dest.target));
-});
-
-gulp.task('inject', () => {
-  return gulp.src(config.inject.src)
-    .pipe(inject(
-      gulp.src(config.inject.includes, { read: false }),
-      config.inject.options
-    ))
     .pipe(gulp.dest(paths.dest.target));
 });
 
@@ -218,7 +197,6 @@ gulp.task('dist', gulp.series(
   'lint',
   'prepare',
   'webpack:production',
-  'inject',
   'headers'
 ));
 

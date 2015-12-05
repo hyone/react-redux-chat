@@ -10,19 +10,6 @@ export default {
   entry: {
     main: [
       './src/index.js'
-    ],
-    vendor: [
-      'jquery',
-      'bootstrap-sass',
-      'firebase',
-      'history',
-      'react',
-      'react-dom',
-      'react-redux',
-      'react-router',
-      'redux',
-      'redux-router',
-      'redux-thunk'
     ]
   },
 
@@ -84,7 +71,6 @@ export default {
     }),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.AggressiveMergingPlugin(),
-    new webpack.optimize.CommonsChunkPlugin('vendor', '[name].js'),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         dead_code: true,
