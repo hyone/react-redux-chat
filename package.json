@@ -11,11 +11,11 @@
     "node": "6.2.2"
   },
   "scripts": {
-    "start": "./node_modules/.bin/gulp run",
-    "dist": "./node_modules/.bin/gulp dist",
-    "test": "./node_modules/.bin/gulp test",
-    "test.watch": "./node_modules/.bin/gulp watch:test",
-    "deploy": "./node_modules/.bin/firebase deploy"
+    "start": "gulp run",
+    "dist": "gulp dist",
+    "test": "gulp test",
+    "test.watch": "gulp watch:test",
+    "deploy": "firebase deploy"
   },
   "dependencies": {
     "bootstrap-sass": "~3.3.5",
