@@ -81,6 +81,7 @@ gulp.task('headers', () => {
 });
 
 gulp.task('webpack', (done) => {
+  process.env.BABEL_ENV = process.env.NODE_ENV;
   const configFile = process.env.NODE_ENV === 'production'
                        ? config.webpack.production
                        : config.webpack.development;
@@ -94,8 +95,7 @@ gulp.task('webpack', (done) => {
 
 gulp.task('webpack:development', gulp.series(
   (done) => {
-    process.env.BABEL_ENV = 'development';
-    process.env.NODE_ENV  = 'development';
+    process.env.NODE_ENV = 'development';
     done()
   },
   'webpack'
@@ -103,8 +103,7 @@ gulp.task('webpack:development', gulp.series(
 
 gulp.task('webpack:production', gulp.series(
   (done) => {
-    process.env.BABEL_ENV = 'production';
-    process.env.NODE_ENV  = 'production';
+    process.env.NODE_ENV = 'production';
     done()
   },
   'webpack'

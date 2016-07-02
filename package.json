@@ -12,6 +12,7 @@
   },
   "scripts": {
     "start": "gulp run",
+    "build": "gulp webpack",
     "dist": "gulp dist",
     "test": "gulp test",
     "test.watch": "gulp watch:test",
