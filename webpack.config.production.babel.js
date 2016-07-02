@@ -2,7 +2,7 @@ import path from 'path';
 import webpack from 'webpack';
 import autoprefixer from 'autoprefixer';
 
-export default {
+module.exports = {
   cache: true,
   debug: true,
   devtool: 'source-map',
@@ -56,7 +56,6 @@ export default {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
         loader: "url?limit=10000&minetype=image/svg+xml"
       }
-
     ]
   },
 

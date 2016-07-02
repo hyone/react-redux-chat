@@ -2,13 +2,14 @@ import path from 'path';
 import webpack from 'webpack';
 import autoprefixer from 'autoprefixer';
 
-export default {
+module.exports = {
   cache: true,
   debug: true,
   devtool: 'eval-source-map',
 
   entry: {
     main: [
+      'webpack/hot/dev-server',
       'webpack-hot-middleware/client',
       './src/index.js'
     ]

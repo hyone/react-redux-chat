@@ -1,7 +1,7 @@
 import path    from 'path';
 import webpack from 'webpack';
 
-export default {
+module.exports = {
   devtool: 'inline-source-map',
 
   // entry: {
