@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
-import map from 'lodash/collection/map';
+import map from 'lodash/map';
 
 import 'styles/ChannelList.scss';
 

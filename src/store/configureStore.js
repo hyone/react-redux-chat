@@ -5,14 +5,13 @@ import { reduxReactRouter } from 'redux-router';
 import createLogger from 'redux-logger';
 import { actionTypes } from 'redux-form';
 const { BLUR, CHANGE, FOCUS, TOUCH } = actionTypes;
-import contains from 'lodash/collection/contains';
-
+import includes from 'lodash/includes';
 import rootReducer from 'reducers';
 import routes from 'routes';
 
 const loggerMiddleware = createLogger({
   predicate: (getState, action) => {
-    return !contains([
+    return !includes([
       BLUR, CHANGE, FOCUS, TOUCH
     ], action.type)
   }

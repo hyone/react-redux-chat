@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
-import last from 'lodash/array/last';
+import last from 'lodash/last';
 
 import MessageItem from 'components/MessageItem';
 import MesssagesLoading from 'components/MessagesLoading';

@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import uniq    from 'lodash/array/uniq';
-import forEach from 'lodash/collection/forEach';
-import sortBy  from 'lodash/collection/sortBy';
-import isEmpty from 'lodash/lang/isEmpty';
-import values  from 'lodash/object/values';
+import uniq    from 'lodash/uniq';
+import forEach from 'lodash/forEach';
+import sortBy  from 'lodash/sortBy';
+import isEmpty from 'lodash/isEmpty';
+import values  from 'lodash/values';
 
 import * as channelsActions from 'actions/channels';
 import * as messagesActions from 'actions/messages';
