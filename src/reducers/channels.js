@@ -3,10 +3,7 @@ import { combineReducers } from 'redux';
 import {
   LOAD_CHANNELS,
   LOAD_CHANNELS_SUCCESS,
-  LOAD_CHANNELS_ERROR,
-  ADD_CHANNEL,
-  ADD_CHANNEL_SUCCESS,
-  ADD_CHANNEL_ERROR
+  LOAD_CHANNELS_ERROR
 } from 'constants/actionTypes/channels';
 
 export const initialState = {

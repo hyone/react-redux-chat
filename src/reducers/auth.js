@@ -67,17 +67,20 @@ function id(state = initialState.id, action) {
 function user(state = initialState.user, action) {
   switch (action.type) {
     case AUTHENTICATE_SUCCESS:
-    case SIGNIN_SUCCESS:          // eslint-disable-line no-fallthrough
+    case SIGNIN_SUCCESS: {
       const provider = action.payload.auth.provider;
       switch (provider) {
         case 'github':
-        case 'twitter':
+        case 'twitter': {
           const data = action.payload[provider];
           return {
             name: data.username,
             avatar: data.profileImageURL
           }
+        }
       }
+    }
+    // eslint-disable-next-line no-fallthrough
     default:
       return state;
   }

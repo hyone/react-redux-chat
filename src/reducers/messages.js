@@ -28,12 +28,13 @@ export default function messagesReducer(state = {}, action) {
     case LOAD_MESSAGES_SUCCESS:
     case LOAD_MESSAGES_ERROR:
     case RECEIVE_MESSAGE_SUCCESS:
-    case RECEIVE_MESSAGE_ERROR:
+    case RECEIVE_MESSAGE_ERROR: {
       const key = action.channel;
       return {
         ...state,
         [key]: messageReducer(state[key], action)
       };
+    }
     default:
       return state;
   }
